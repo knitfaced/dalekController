@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DalekController</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    
+    <!-- urls... replace me with the proper ones! -->
+    <string name="left_url">http://www.google.com</string>
+    <string name="up_url">http://www.google.com</string>
+    <string name="right_url">http://www.google.com</string>
+    <string name="exterminate_url">http://www.google.com</string>
+
+</resources>
