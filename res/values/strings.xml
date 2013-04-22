@@ -6,9 +6,9 @@
     <string name="hello_world">Hello world!</string>
     
     <!-- urls... replace me with the proper ones! -->
-    <string name="left_url">http://www.google.com</string>
-    <string name="up_url">http://www.google.com</string>
-    <string name="right_url">http://www.google.com</string>
-    <string name="exterminate_url">http://www.google.com</string>
+    <string name="left_url">left</string>
+    <string name="up_url">forward</string>
+    <string name="right_url">right</string>
+    <string name="exterminate_url">exterminate</string>
 
 </resources>

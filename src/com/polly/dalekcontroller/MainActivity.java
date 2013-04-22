@@ -3,10 +3,14 @@ package com.polly.dalekcontroller;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
@@ -48,7 +52,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Log.d(TAG, "pressed up");
-				new UrlRequestTask().execute(getString(R.string.up_url));
+				new UrlRequestTask().execute(getUrlPrefixString() + getString(R.string.up_url));
 			}
 		});
 
@@ -57,7 +61,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Log.d(TAG, "pressed left");
-				new UrlRequestTask().execute(getString(R.string.up_url));
+				new UrlRequestTask().execute(getUrlPrefixString() + getString(R.string.left_url));
 			}
 		});
 
@@ -66,7 +70,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Log.d(TAG, "pressed right");
-				new UrlRequestTask().execute(getString(R.string.up_url));
+				new UrlRequestTask().execute(getUrlPrefixString() + getString(R.string.right_url));
 			}
 		});
 		
@@ -75,9 +79,17 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Log.d(TAG, "pressed exterminate");
-				new UrlRequestTask().execute(getString(R.string.up_url));
+				new UrlRequestTask().execute(getUrlPrefixString() + getString(R.string.exterminate_url));
 			}
 		});		
+	}
+
+	private String getUrlPrefixString() {
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+		final String ipAddress = sharedPref.getString("ip_address", "10.10.1.104");
+		final String port = sharedPref.getString("port", "81");
+		final String hostString = "http://" + ipAddress + ":" + port + "/";
+		return hostString;
 	}
 
 	@Override
@@ -87,4 +99,10 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent i = new Intent(this, SettingsActivity.class);
+		startActivity(i);
+		return super.onOptionsItemSelected(item);
+	}
 }
