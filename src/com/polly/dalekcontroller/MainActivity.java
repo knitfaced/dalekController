@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Log.d(TAG, "pressed up");
-				new UrlRequestTask().execute(getUrlPrefixString() + getString(R.string.up_url));
+				new UrlRequestTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getUrlPrefixString() + getString(R.string.forward));
 			}
 		});
 
@@ -61,7 +61,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Log.d(TAG, "pressed left");
-				new UrlRequestTask().execute(getUrlPrefixString() + getString(R.string.left_url));
+				new UrlRequestTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getUrlPrefixString() + getString(R.string.left));
 			}
 		});
 
@@ -70,7 +70,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Log.d(TAG, "pressed right");
-				new UrlRequestTask().execute(getUrlPrefixString() + getString(R.string.right_url));
+				new UrlRequestTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getUrlPrefixString() + getString(R.string.right));
 			}
 		});
 		
@@ -79,7 +79,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Log.d(TAG, "pressed exterminate");
-				new UrlRequestTask().execute(getUrlPrefixString() + getString(R.string.exterminate_url));
+				new UrlRequestTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getUrlPrefixString() + getString(R.string.exterminate));
 			}
 		});		
 	}
@@ -101,8 +101,20 @@ public class MainActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		Intent i = new Intent(this, SettingsActivity.class);
-		startActivity(i);
+		final int itemId = item.getItemId();
+		switch (itemId) {
+			case R.id.action_settings:
+				Log.d(TAG, "pressed settings");
+				Intent i = new Intent(this, SettingsActivity.class);
+				startActivity(i);
+				break;
+			case R.id.action_restart:
+				Log.d(TAG, "pressed restart");
+				new UrlRequestTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getUrlPrefixString() + getString(R.string.reboot));
+				break;
+			default:
+				break;
+		}
 		return super.onOptionsItemSelected(item);
 	}
 }

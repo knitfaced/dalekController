@@ -3,12 +3,13 @@
 
     <string name="app_name">DalekController</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="action_restart">Restart</string>
     
-    <!-- urls... replace me with the proper ones! -->
-    <string name="left_url">left</string>
-    <string name="up_url">forward</string>
-    <string name="right_url">right</string>
-    <string name="exterminate_url">exterminate</string>
+    <!-- dalek commands -->
+    <string name="left">left</string>
+    <string name="forward">forward</string>
+    <string name="right">right</string>
+    <string name="exterminate">exterminate</string>
+    <string name="reboot">shutdown?code=4091</string>
 
 </resources>
